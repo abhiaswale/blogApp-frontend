@@ -139,11 +139,17 @@ const Login = () => {
             </p>
           </div>
         </form>
-        <Footer />
       </div>
     );
   }
-  return <div>{routes}</div>;
+  return (
+    <div>
+      <section>{routes}</section>
+      <div className="absolute top-1/2">
+        <Footer />
+      </div>
+    </div>
+  );
 };
 
 export default Login;

@@ -34,7 +34,7 @@ const PostForm = () => {
       .then((post) => {
         setTitle(post.post.title);
         setDescription(post.post.description);
-        setImage(post.post.imageUrl);
+        // setImage(post.post.imageUrl);
         console.log(post.post);
       })
       .catch((err) => {
@@ -47,7 +47,7 @@ const PostForm = () => {
     if (location.state) {
       startEditPost(editPostId);
     }
-  }, [editPostId, location.state, startEditPost]);
+  }, []);
 
   const fileChangeHandler = (e) => {
     console.log(e.target.files[0]);
@@ -56,15 +56,15 @@ const PostForm = () => {
     }
   };
   useEffect(() => {
-    // if (!image) {
-    //   setPreview(null);
-    //   return;
-    // }
-    // const objectUrl = URL.createObjectURL(image);
-    // setPreview(objectUrl);
-    // return () => {
-    //   URL.revokeObjectURL(objectUrl);
-    // };
+    if (!image) {
+      setPreview(null);
+      return;
+    }
+    const objectUrl = URL.createObjectURL(image);
+    setPreview(objectUrl);
+    return () => {
+      URL.revokeObjectURL(objectUrl);
+    };
   }, [image]);
 
   const submitHandler = (e) => {
@@ -73,8 +73,7 @@ const PostForm = () => {
       setErrorMsg("Title cannot be empty");
       return;
     }
-    if (!image && isEditing) {
-    }
+
     if (!image) {
       setErrorMsg("Please add an image");
       return;
@@ -149,8 +148,8 @@ const PostForm = () => {
           name="image"
           id="image"
           className="mt-2 p-1"
-          onChange={() => {
-            fileChangeHandler();
+          onChange={(e) => {
+            fileChangeHandler(e);
             setErrorMsg(null);
           }}
           //   defaultValue={image}

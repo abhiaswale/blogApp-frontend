@@ -43,7 +43,7 @@ const SinglePost = () => {
         </p>
         <div className="flex justify-center items-center my-4">
           <img
-            className="lg:w-1/3 h-auto"
+            className="lg:w-1/2 lg:h-58"
             src={postImage}
             alt="PostImage"
           ></img>

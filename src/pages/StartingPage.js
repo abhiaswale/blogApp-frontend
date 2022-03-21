@@ -78,6 +78,7 @@ const StartingPage = (props) => {
         setLoading(false);
       })
       .catch((err) => {
+        console.log(err);
         msgCtx.catchMessage(err);
       });
   }, [authCtx.token]);
