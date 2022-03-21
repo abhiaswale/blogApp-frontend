@@ -9,7 +9,7 @@ const SinglePost = () => {
   const [postImage, setPostImage] = useState();
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    fetch(`http://localhost:8080/user/post/${postId}`, {
+    fetch(`https://blog-app05.herokuapp.com/user/post/${postId}`, {
       method: "GET",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),

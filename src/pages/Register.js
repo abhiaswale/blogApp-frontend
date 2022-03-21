@@ -9,7 +9,7 @@ function Register() {
   const navigate = useNavigate();
   const submitHandler = async (e) => {
     e.preventDefault();
-    fetch("http://localhost:8080/auth/register", {
+    fetch("https://blog-app05.herokuapp.com/auth/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

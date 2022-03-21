@@ -63,7 +63,7 @@ const StartingPage = (props) => {
     if (localStorage.getItem("expiryDate") <= new Date()) {
       authCtx.logout();
     }
-    fetch("http://localhost:8080/user/detail", {
+    fetch("https://blog-app05.herokuapp.com/user/detail", {
       headers: {
         Authorization: "Bearer " + authCtx.token,
       },
@@ -83,7 +83,7 @@ const StartingPage = (props) => {
   }, [authCtx.token]);
 
   const postListFetch = async () => {
-    fetch("http://localhost:8080/user/post?page=" + pageNumber, {
+    fetch("https://blog-app05.herokuapp.com/user/post?page=" + pageNumber, {
       method: "GET",
       headers: {
         Authorization: "Bearer " + authCtx.token,
@@ -110,7 +110,7 @@ const StartingPage = (props) => {
 
   const deleteHandler = (id) => {
     console.log(id);
-    fetch(`http://localhost:8080/user/post/${id}`, {
+    fetch(`https://blog-app05.herokuapp.com/user/post/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
