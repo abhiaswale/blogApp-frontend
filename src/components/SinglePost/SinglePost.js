@@ -21,7 +21,7 @@ const SinglePost = () => {
       .then((post) => {
         console.log(post.post);
         setPostItem(post.post);
-        setPostImage("http://localhost:8080/" + post.post.imageUrl);
+        setPostImage("https://blog-app05.herokuapp.com/" + post.post.imageUrl);
         setLoading(false);
       })
       .catch((err) => {
