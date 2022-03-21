@@ -11,7 +11,6 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [isAuth, setIsAuth] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
-  const [touched, setTouched] = useState(false);
 
   const loginHandler = async (e) => {
     e.preventDefault();
@@ -62,7 +61,6 @@ const Login = () => {
         console.log(err);
         setIsAuth(false);
         setErrorMsg(err.message);
-        setTouched(true);
       });
   };
 
@@ -73,9 +71,7 @@ const Login = () => {
     }, miliseconds);
   };
 
-  // const newUserHandler = () => {
-  //   navigate("/register");
-  // };
+  //
 
   const setTestCredentials = () => {
     setEmail(TestCredentials.email);
@@ -116,7 +112,6 @@ const Login = () => {
               onChange={(e) => {
                 setPassword(e.target.value);
                 setErrorMsg(null);
-                setTouched(false);
               }}
               className={` w-full my-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
                 errorMsg && errorMsg.toLowerCase().includes("password")

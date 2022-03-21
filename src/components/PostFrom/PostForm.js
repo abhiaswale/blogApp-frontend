@@ -11,6 +11,7 @@ const PostForm = () => {
   const [image, setImage] = useState("");
   const [preview, setPreview] = useState("");
   const [isEditing, setIsEditing] = useState(false);
+  const [errorMsg, setErrorMsg] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -33,6 +34,7 @@ const PostForm = () => {
       .then((post) => {
         setTitle(post.post.title);
         setDescription(post.post.description);
+        setImage(post.post.imageUrl);
         console.log(post.post);
       })
       .catch((err) => {
@@ -45,7 +47,7 @@ const PostForm = () => {
     if (location.state) {
       startEditPost(editPostId);
     }
-  }, [editPostId]);
+  }, [editPostId, location.state, startEditPost]);
 
   const fileChangeHandler = (e) => {
     console.log(e.target.files[0]);
@@ -54,20 +56,33 @@ const PostForm = () => {
     }
   };
   useEffect(() => {
-    if (!image) {
-      setPreview(null);
-      return;
-    }
-    const objectUrl = URL.createObjectURL(image);
-    setPreview(objectUrl);
-    return () => {
-      URL.revokeObjectURL(objectUrl);
-    };
+    // if (!image) {
+    //   setPreview(null);
+    //   return;
+    // }
+    // const objectUrl = URL.createObjectURL(image);
+    // setPreview(objectUrl);
+    // return () => {
+    //   URL.revokeObjectURL(objectUrl);
+    // };
   }, [image]);
 
   const submitHandler = (e) => {
     e.preventDefault();
-
+    if (!title) {
+      setErrorMsg("Title cannot be empty");
+      return;
+    }
+    if (!image && isEditing) {
+    }
+    if (!image) {
+      setErrorMsg("Please add an image");
+      return;
+    }
+    if (!description) {
+      setErrorMsg("Description cannot be empty");
+      return;
+    }
     const formData = new FormData();
     formData.append("title", title);
     formData.append("description", description);
@@ -111,6 +126,7 @@ const PostForm = () => {
         onSubmit={submitHandler}
       >
         <h3 className="font-bold lg:text-2xl text-xl">Post a blog</h3>
+        {errorMsg && <p>{errorMsg}</p>}
         <label className="font-medium lg:text-base text-sm  w-full mt-4">
           TITLE
         </label>
@@ -120,6 +136,7 @@ const PostForm = () => {
           placeholder="Title"
           onChange={(e) => {
             setTitle(e.target.value);
+            setErrorMsg(null);
           }}
           defaultValue={title}
           className="shadow appearance-none focus:outline-none focus:shadow-outline mt-2 font-medium lg:text-base text-sm w-full p-1"
@@ -132,11 +149,16 @@ const PostForm = () => {
           name="image"
           id="image"
           className="mt-2 p-1"
-          onChange={fileChangeHandler}
+          onChange={() => {
+            fileChangeHandler();
+            setErrorMsg(null);
+          }}
           //   defaultValue={image}
         ></input>
         <div className="w-32 h-32">
-          {image && <img className="w-32 h-32" src={preview}></img>}
+          {image && (
+            <img className="w-32 h-32" alt="PostImage" src={preview}></img>
+          )}
         </div>
         <label className="font-medium lg:text-base text-sm w-full mt-4">
           DESCRIPTION
@@ -149,6 +171,7 @@ const PostForm = () => {
           cols="30"
           onChange={(e) => {
             setDescription(e.target.value);
+            setErrorMsg(null);
           }}
           defaultValue={description}
           className="shadow appearance-none focus:outline-none lg:text-base text-sm focus:shadow-outline w-full mt-2 p-1 h-32"

@@ -27,7 +27,7 @@ const SinglePost = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [postId]);
 
   let content;
   if (loading) {
@@ -42,7 +42,11 @@ const SinglePost = () => {
           {postItem.description}
         </p>
         <div className="flex justify-center items-center my-4">
-          <img className="lg:w-1/3 h-auto" src={postImage} alt="image"></img>
+          <img
+            className="lg:w-1/3 h-auto"
+            src={postImage}
+            alt="PostImage"
+          ></img>
         </div>
         <div className="flex justify-center items-center">
           <button
