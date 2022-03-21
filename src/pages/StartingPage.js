@@ -141,7 +141,7 @@ const StartingPage = (props) => {
       msgCtx.catchMessage("Please update current status and try again");
       return;
     }
-    const res = await fetch("http://localhost:8080/user/status", {
+    const res = await fetch("https://blog-app05.herokuapp.com/user/status", {
       method: "PUT",
       headers: {
         Authorization: "Bearer " + authCtx.token,
