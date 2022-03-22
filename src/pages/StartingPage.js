@@ -20,6 +20,7 @@ const StartingPage = (props) => {
   const [status, setStatus] = useState();
   //LOADING STATES
   const [loading, setLoading] = useState(true);
+  const [postsLoading, setPostsLoading] = useState(true);
   //POST
   const [posts, setPosts] = useState([]);
   //  PAGINATION STATES
@@ -84,6 +85,7 @@ const StartingPage = (props) => {
   }, [authCtx.token]);
 
   const postListFetch = async () => {
+    setPostsLoading(true);
     fetch("https://blog-app05.herokuapp.com/user/post?page=" + pageNumber, {
       method: "GET",
       headers: {
@@ -99,6 +101,7 @@ const StartingPage = (props) => {
       .then((data) => {
         setPosts(data.data);
         setNumberOfPages(data.pages);
+        setPostsLoading(false);
       })
       .catch((err) => {
         msgCtx.catchMessage(err);
@@ -196,7 +199,7 @@ const StartingPage = (props) => {
               navigate("/postform");
             }}
           >
-            NEW POST
+            NEW BLOG
           </button>
           <div className="flex justify-center items-center relative lg:w-72 w-2/3">
             <input
@@ -236,28 +239,32 @@ const StartingPage = (props) => {
           </div>
         </div>
         {searchError && <p className="text-center">{searchError}</p>}
-        <div className=" flex items-center justify-center">
-          {posts && posts.length > 0 && (
-            <div className="lg:w-1/2 w-11/12">
-              {posts.map((post) => (
-                <Post
-                  key={post._id}
-                  _id={post._id}
-                  title={post.title}
-                  description={post.description}
-                  creator={post.creator._id}
-                  creatorName={post.creator.name}
-                  createdAt={post.createdAt}
-                  name={post.name}
-                  onDelete={deleteHandler}
-                />
-              ))}
-            </div>
-          )}
-          {posts.length === 0 && (
-            <p className="font-semibold text-xl my-10">No Posts Found.</p>
-          )}
-        </div>
+        {postsLoading ? (
+          <Loading />
+        ) : (
+          <div className="flex justify-center h-[35rem]">
+            {posts && posts.length > 0 && (
+              <div className="lg:w-1/2 w-11/12">
+                {posts.map((post) => (
+                  <Post
+                    key={post._id}
+                    _id={post._id}
+                    title={post.title}
+                    description={post.description}
+                    creator={post.creator._id}
+                    creatorName={post.creator.name}
+                    createdAt={post.createdAt}
+                    name={post.name}
+                    onDelete={deleteHandler}
+                  />
+                ))}
+              </div>
+            )}
+            {posts.length === 0 && (
+              <p className="font-semibold text-xl my-10">No Posts Found.</p>
+            )}
+          </div>
+        )}
         {posts.length > 0 && (
           <Pagination
             numberOfPages={numberOfPages}

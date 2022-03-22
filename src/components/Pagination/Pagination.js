@@ -7,12 +7,15 @@ const Pagination = (props) => {
   //PAGINATION LOGIC
   const pageHandler = (i) => {
     props.setPageNumber(i + 1);
+    window.scrollTo(0, 0);
   };
   const goToPrevious = () => {
     props.setPageNumber(Math.max(1, props.currentPage - 1));
+    window.scrollTo(0, 0);
   };
   const goToNext = () => {
     props.setPageNumber(Math.min(props.numberOfPages, props.currentPage + 1));
+    window.scrollTo(0, 0);
   };
 
   return (

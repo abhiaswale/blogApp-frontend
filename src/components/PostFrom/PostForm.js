@@ -8,6 +8,7 @@ const PostForm = () => {
   const msgCtx = useContext(MessageContext);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [imgFile, setImgFile] = useState("");
   const [image, setImage] = useState("");
   const [preview, setPreview] = useState("");
   const [isEditing, setIsEditing] = useState(false);
@@ -35,6 +36,7 @@ const PostForm = () => {
         setTitle(post.post.title);
         setDescription(post.post.description);
         // setImage(post.post.imageUrl);
+        setImgFile(post.post.imageUrl);
         console.log(post.post);
       })
       .catch((err) => {
@@ -73,11 +75,8 @@ const PostForm = () => {
       setErrorMsg("Title cannot be empty");
       return;
     }
+    console.log(imgFile);
 
-    if (!image) {
-      setErrorMsg("Please add an image");
-      return;
-    }
     if (!description) {
       setErrorMsg("Description cannot be empty");
       return;
@@ -85,6 +84,9 @@ const PostForm = () => {
     const formData = new FormData();
     formData.append("title", title);
     formData.append("description", description);
+    if (isEditing && !image) {
+      formData.append("image", imgFile);
+    }
     formData.append("image", image);
 
     let url = "https://blog-app05.herokuapp.com/user/post";
@@ -152,7 +154,6 @@ const PostForm = () => {
             fileChangeHandler(e);
             setErrorMsg(null);
           }}
-          //   defaultValue={image}
         ></input>
         <div className="w-32 h-32">
           {image && (
