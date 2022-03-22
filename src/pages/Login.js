@@ -78,13 +78,14 @@ const Login = () => {
     setPassword(TestCredentials.password);
   };
 
-  let routes;
+  let content;
 
   if (isAuth) {
     // navigate("/startpage");
   } else {
-    routes = (
-      <div className=" lg:w-1/3 w-full flex justify-center items-center shadow-2xl flex-col absolute lg:top-52 top-32 lg:left-1/3 left-0 bg-white p-8">
+    content = (
+      // <div className=" lg:w-1/3 w-full flex justify-center items-center shadow-2xl flex-col absolute lg:top-52 top-32 lg:left-1/3 left-0 bg-white p-8">
+      <div className="lg:w-1/3 flex justify-center items-center shadow-2xl flex-col bg-white p-8 my-28">
         <h1 className="text-2xl font-semibold p-2">Welcome Back</h1>
         <p className="p-2">Enter your credentials to access your account</p>
         <form className="w-full" onSubmit={loginHandler}>
@@ -144,10 +145,8 @@ const Login = () => {
   }
   return (
     <div>
-      <section>{routes}</section>
-      <div className="absolute top-1/2">
-        <Footer />
-      </div>
+      <section className="flex justify-center items-center">{content}</section>
+      <Footer />
     </div>
   );
 };
