@@ -4,6 +4,7 @@ import Loading from "../Loading/Loading";
 
 const SinglePost = () => {
   const navigate = useNavigate();
+
   const { postId } = useParams();
   const [postItem, setPostItem] = useState({});
   const [postImage, setPostImage] = useState();
@@ -38,12 +39,13 @@ const SinglePost = () => {
         <h1 className="lg:text-3xl text-2xl text-center font-semibold my-1 mx-6">
           {postItem.title}
         </h1>
+
         <p className="lg:text-lg text-base text-center my-4 mx-2">
           {postItem.description}
         </p>
         <div className="flex justify-center items-center my-4">
           <img
-            className="lg:w-1/2 lg:h-58"
+            className="lg:w-[24rem] lg:h-[18rem] "
             src={postImage}
             alt="PostImage"
           ></img>

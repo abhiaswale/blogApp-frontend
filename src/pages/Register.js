@@ -6,9 +6,22 @@ function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
   const navigate = useNavigate();
   const submitHandler = async (e) => {
     e.preventDefault();
+    if (!name) {
+      setError("Please enter a valid name!!");
+      return;
+    }
+    if (!email) {
+      setError("Please enter an valid email");
+      return;
+    }
+    if (!password || password.trim.length < 5) {
+      setError("Please enter a valid password between 5-10 characters");
+      return;
+    }
     fetch("https://blog-app05.herokuapp.com/auth/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -37,9 +50,9 @@ function Register() {
   };
 
   let content = (
-    <div className="lg:w-1/3 flex justify-center items-center shadow-2xl flex-col bg-white p-8 my-28">
+    <div className="lg:w-1/3 w-full flex justify-center items-center shadow-2xl flex-col bg-white p-8 my-28">
       <h1 className="text-2xl font-semibold p-4">Register</h1>
-      <div class="w-full border-gray-300"></div>
+      <p>{error}</p>
       <form className="w-full" onSubmit={submitHandler}>
         <div className="focus-within:text-green-600 focus:outline-none">
           <input
@@ -48,8 +61,13 @@ function Register() {
             placeholder="Name"
             onChange={(e) => {
               setName(e.target.value);
+              setError(null);
             }}
-            className="w-full my-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className={`w-full my-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
+              error && error.toLowerCase().includes("name")
+                ? "border-red-600"
+                : ""
+            }`}
           ></input>
         </div>
         <div>
@@ -59,8 +77,13 @@ function Register() {
             placeholder="Email"
             onChange={(e) => {
               setEmail(e.target.value);
+              setError(null);
             }}
-            className="w-full my-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className={`w-full my-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
+              error && error.toLowerCase().includes("email")
+                ? "border-red-600"
+                : ""
+            }`}
           ></input>
         </div>
         <div>
@@ -70,13 +93,18 @@ function Register() {
             placeholder="Password"
             onChange={(e) => {
               setPassword(e.target.value);
+              setError(null);
             }}
-            className="w-full my-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className={`w-full my-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
+              error && error.toLowerCase().includes("password")
+                ? "border-red-600"
+                : ""
+            }`}
           />
         </div>
         <div className="flex justify-center items-center my-2 w-full flex-col">
           <button
-            className="font-semibold p-3 bg-blue-600 rounded-lg"
+            className="font-semibold p-3 bg-cyan-300 rounded-lg"
             type="submit"
           >
             Register

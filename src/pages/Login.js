@@ -124,7 +124,7 @@ const Login = () => {
           <p className=" text-red-400 font-semibold text-center">{errorMsg}</p>
           <div className="flex justify-center items-center flex-col my-2 w-full">
             <button
-              className="font-semibold p-3 bg-blue-600 rounded-lg hover:bg-purple-400"
+              className="font-semibold p-3 bg-cyan-300 rounded-lg hover:bg-purple-400"
               type="submit"
             >
               Login

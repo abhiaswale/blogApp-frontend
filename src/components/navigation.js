@@ -11,7 +11,7 @@ const Nav = () => {
     navigate("/");
   };
   return (
-    <div className="flex justify-between items-center h-16 bg-gray-600">
+    <div className="flex justify-between items-center h-16 bg-teal-500">
       <h3 className="lg:text-3xl text-lg lg:mx-8 mx-4 font-bold">Blogger.</h3>
       <nav className=" lg:mx-8 mx-2 flex lg:justify-around justify-end items-center lg:w-1/6 w-1/2">
         {!authCtx.isAuth && (
