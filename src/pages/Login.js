@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer/Footer";
+import Loading from "../components/Loading/Loading";
 import AuthContext from "../store/auth-context";
 import { TestCredentials } from "../test";
 
@@ -10,7 +11,10 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isAuth, setIsAuth] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
+  const location = useLocation();
+  const registerMsg = location.state;
 
   const loginHandler = async (e) => {
     e.preventDefault();
@@ -26,6 +30,7 @@ const Login = () => {
       setErrorMsg("Password must be atleast 5 characters Long");
       return;
     }
+    setLoading(true);
     fetch("https://blog-app05.herokuapp.com/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -53,6 +58,7 @@ const Login = () => {
         localStorage.setItem("expiryDate", expiryDate);
         autoLogoutHandler(remainingMiliseconds);
         setIsAuth(true);
+        setLoading(false);
       })
       .then(() => {
         navigate("/startpage");
@@ -87,6 +93,11 @@ const Login = () => {
       // <div className=" lg:w-1/3 w-full flex justify-center items-center shadow-2xl flex-col absolute lg:top-52 top-32 lg:left-1/3 left-0 bg-white p-8">
       <div className="lg:w-1/3 flex justify-center items-center shadow-2xl flex-col bg-white p-8 my-28">
         <h1 className="text-2xl font-semibold p-2">Welcome Back</h1>
+        {registerMsg && (
+          <p className="border-[2px] border-red-600 bg-[#ff9999] shadow-inner rounded-lg p-[4px]">
+            {registerMsg}
+          </p>
+        )}
         <p className="p-2">Enter your credentials to access your account</p>
         <form className="w-full" onSubmit={loginHandler}>
           <div className="focus-within:text-green-600 focus:outline-none">
@@ -146,6 +157,7 @@ const Login = () => {
   return (
     <div>
       <section className="flex justify-center items-center">{content}</section>
+      {loading && <Loading />}
       <Footer />
     </div>
   );

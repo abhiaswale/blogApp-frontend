@@ -18,7 +18,11 @@ function Register() {
       setError("Please enter an valid email");
       return;
     }
-    if (!password || password.trim.length < 5) {
+    if (!password) {
+      setError("Password cannot be empty");
+      return;
+    }
+    if (password.length < 5) {
       setError("Please enter a valid password between 5-10 characters");
       return;
     }
@@ -42,7 +46,7 @@ function Register() {
       })
       .then((data) => {
         console.log(data);
-        navigate("/");
+        navigate("/", { state: "Successfully Registered! Please login" });
       })
       .catch((err) => {
         alert(err);

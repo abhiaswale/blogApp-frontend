@@ -194,7 +194,7 @@ const StartingPage = (props) => {
         </div>
         <div className="flex lg:justify-center justify-between items-center w-auto font-bold p-2 mt-4 ">
           <button
-            className="bg-teal-500 rounded-xl lg:p-3 p-[6px] py-[10px] font-bold lg:mx-10 mx-2 lg:text-xl text-sm lg:w-auto lg:w-42 w-4/12"
+            className="bg-teal-500 rounded-xl lg:p-[6px] p-[6px] py-[10px] font-bold lg:mx-10 mx-2 lg:text-xl text-sm lg:w-auto lg:w-42 w-4/12"
             onClick={() => {
               navigate("/postform");
             }}
