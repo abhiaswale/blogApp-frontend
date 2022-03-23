@@ -94,7 +94,7 @@ const Login = () => {
       <div className="lg:w-1/3 flex justify-center items-center shadow-2xl flex-col bg-white p-8 my-28">
         <h1 className="text-2xl font-semibold p-2">Welcome Back</h1>
         {registerMsg && (
-          <p className="border-[2px] border-red-600 bg-[#ff9999] shadow-inner rounded-lg p-[4px]">
+          <p className="border-[2px] border-[#00eb8d] bg-[#00eb8d] bg-opacity-50 shadow-inner rounded-lg p-[4px]">
             {registerMsg}
           </p>
         )}
@@ -135,7 +135,7 @@ const Login = () => {
           <p className=" text-red-400 font-semibold text-center">{errorMsg}</p>
           <div className="flex justify-center items-center flex-col my-2 w-full">
             <button
-              className="font-semibold p-3 bg-cyan-300 rounded-lg hover:bg-purple-400"
+              className="font-semibold p-3 bg-cyan-300 rounded-lg hover:bg-purple-400 transition-all ease-in-out delay-100"
               type="submit"
             >
               Login
@@ -156,7 +156,11 @@ const Login = () => {
   }
   return (
     <div>
-      <section className="flex justify-center items-center">{content}</section>
+      {!loading && (
+        <section className="flex justify-center items-center">
+          {content}
+        </section>
+      )}
       {loading && <Loading />}
       <Footer />
     </div>

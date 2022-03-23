@@ -39,7 +39,7 @@ const Nav = () => {
             Feed
           </a>
         )}
-        {user && (
+        {authCtx.isAuth && user && (
           <button
             className="lg:m-2 m-2 lg:p-2 p-[4px] lg:font-medium text-sm font-normal border-2 border-b-zinc-50 rounded-md text-white hover:bg-white hover:text-black transition-all ease-in-out delay-75"
             onClick={logoutHandler}

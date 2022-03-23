@@ -108,7 +108,7 @@ function Register() {
         </div>
         <div className="flex justify-center items-center my-2 w-full flex-col">
           <button
-            className="font-semibold p-3 bg-cyan-300 rounded-lg"
+            className="font-semibold p-3 bg-cyan-300 rounded-lg hover:bg-purple-400 transition-all ease-in-out delay-100"
             type="submit"
           >
             Register
