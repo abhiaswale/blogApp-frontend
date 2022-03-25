@@ -26,7 +26,6 @@ const Post = (props) => {
           <button
             className="lg:text-base text-sm p-2 hover:bg-neutral-400 font-semibold transition ease-in-out "
             onClick={() => {
-              console.log(props._id.toString());
               navigate(`/post/${props._id}`);
             }}
           >

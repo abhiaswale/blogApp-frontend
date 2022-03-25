@@ -40,7 +40,6 @@ const Login = () => {
       }),
     })
       .then((res) => {
-        console.log(res.message);
         if (res.status === 401) {
           throw new Error("Invalid credentials");
         }
@@ -50,7 +49,6 @@ const Login = () => {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
         authCtx.login(data.token);
         authCtx.userIdHandler(data.userId);
         const remainingMiliseconds = 60 * 60 * 1000;
@@ -64,7 +62,6 @@ const Login = () => {
         navigate("/startpage");
       })
       .catch((err) => {
-        console.log(err);
         setIsAuth(false);
         setErrorMsg(err.message);
       });
@@ -72,12 +69,9 @@ const Login = () => {
 
   const autoLogoutHandler = (miliseconds) => {
     setTimeout(() => {
-      console.log("Logout executed");
       authCtx.logout();
     }, miliseconds);
   };
-
-  //
 
   const setTestCredentials = () => {
     setEmail(TestCredentials.email);
@@ -90,7 +84,6 @@ const Login = () => {
     // navigate("/startpage");
   } else {
     content = (
-      // <div className=" lg:w-1/3 w-full flex justify-center items-center shadow-2xl flex-col absolute lg:top-52 top-32 lg:left-1/3 left-0 bg-white p-8">
       <div className="lg:w-1/3 flex justify-center items-center shadow-2xl flex-col bg-white p-8 my-28">
         <h1 className="text-2xl font-semibold p-2">Welcome Back</h1>
         {registerMsg && (
@@ -98,7 +91,9 @@ const Login = () => {
             {registerMsg}
           </p>
         )}
-        <p className="p-2">Enter your credentials to access your account</p>
+        <p className="p-2 text-center">
+          Enter your credentials to access your account
+        </p>
         <form className="w-full" onSubmit={loginHandler}>
           <div className="focus-within:text-green-600 focus:outline-none">
             <input

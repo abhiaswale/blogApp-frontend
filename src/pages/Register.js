@@ -45,7 +45,6 @@ function Register() {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
         navigate("/", { state: "Successfully Registered! Please login" });
       })
       .catch((err) => {

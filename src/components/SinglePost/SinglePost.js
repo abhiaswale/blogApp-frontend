@@ -20,9 +20,8 @@ const SinglePost = () => {
         return res.json();
       })
       .then((post) => {
-        console.log(post.post);
         setPostItem(post.post);
-        setPostImage("https://blog-app05.herokuapp.com/" + post.post.imageUrl);
+        setPostImage(post.post.imageUrl);
         setLoading(false);
       })
       .catch((err) => {

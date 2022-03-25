@@ -70,7 +70,6 @@ const StartingPage = (props) => {
       },
     })
       .then((res) => {
-        console.log(res);
         return res.json();
       })
       .then((data) => {
@@ -113,7 +112,6 @@ const StartingPage = (props) => {
   }, [pageNumber]);
 
   const deleteHandler = (id) => {
-    console.log(id);
     fetch(`https://blog-app05.herokuapp.com/user/post/${id}`, {
       method: "DELETE",
       headers: {
@@ -140,7 +138,6 @@ const StartingPage = (props) => {
 
   const updateStatusHandler = async (e) => {
     e.preventDefault();
-    console.log(userData.detail.status);
     if (userData.detail.status === status) {
       msgCtx.catchMessage("Please update current status and try again");
       return;
@@ -157,9 +154,7 @@ const StartingPage = (props) => {
     });
 
     const data = await res.json();
-    console.log(data);
     msgCtx.catchMessage(data.message);
-    console.log(status);
   };
   let content;
   if (loading) {
