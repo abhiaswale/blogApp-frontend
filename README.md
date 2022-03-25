@@ -4,7 +4,7 @@ A Blog App made using MERN stack. This repository contains the front end for the
 
 ## Live Demo 
 
-[Blogger 📱](https://blog-app03.netlify.app/,"Blogger")
+[Blogger 📱](https://blog-app03.netlify.app/)
 
 ## Versions:
 - react : 17.0.2
