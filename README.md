@@ -14,10 +14,10 @@ A Blog App made using MERN stack. This repository contains the front end for the
 
 ## Installation and running the app
 
-    git clone https://github.com/cyproto/todo-frontend.git
-    cd todo-frontend
+    git clone https://github.com/abhiaswale/blogApp-frontend.git
+    cd blogApp-frontend
     npm install
-    ng serve
+    npm start
 
 ## Screenshots
 
