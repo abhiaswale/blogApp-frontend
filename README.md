@@ -1,17 +1,17 @@
-#Blogger - The Blog App
+# Blogger - The Blog App
 
 A Blog App made using MERN stack. This repository contains the front end for the app.
 
 ------------
 
 
-##Live Demo 
+## Live Demo 
 
 [Blogger 📱](https://blog-app03.netlify.app/"Blogger")
 
 
 ------------
-##Versions:
+## Versions:
 - react : 17.0.2
 - express : 4.17.3
 - node :  v14.17.1
@@ -28,7 +28,7 @@ A Blog App made using MERN stack. This repository contains the front end for the
 
 ------------
 
-##Screenshots
+## Screenshots
 
 |![img](https://i.imgur.com/IDqLwpU.png) |![img](https://i.imgur.com/6H1r6pq.png) |
 | --------- | -----:|
