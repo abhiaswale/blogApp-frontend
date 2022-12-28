@@ -86,7 +86,7 @@ const StartingPage = (props) => {
 
   const postListFetch = async () => {
     setPostsLoading(true);
-    fetch("https://blog-app05.herokuapp.com/user/post?page=" + pageNumber, {
+    fetch(`${base_Api}user/post?page=` + pageNumber, {
       method: "GET",
       headers: {
         Authorization: "Bearer " + authCtx.token,
@@ -113,7 +113,7 @@ const StartingPage = (props) => {
   }, [pageNumber]);
 
   const deleteHandler = (id) => {
-    fetch(`https://blog-app05.herokuapp.com/user/post/${id}`, {
+    fetch(`${base_Api}user/post/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
@@ -143,7 +143,7 @@ const StartingPage = (props) => {
       msgCtx.catchMessage("Please update current status and try again");
       return;
     }
-    const res = await fetch("https://blog-app05.herokuapp.com/user/status", {
+    const res = await fetch(`${base_Api}user/status`, {
       method: "PUT",
       headers: {
         Authorization: "Bearer " + authCtx.token,
