@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { base_Api } from "../../store/api";
 import Loading from "../Loading/Loading";
 
 const SinglePost = () => {
@@ -10,7 +11,7 @@ const SinglePost = () => {
   const [postImage, setPostImage] = useState();
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    fetch(`https://blog-app05.herokuapp.com/user/post/${postId}`, {
+    fetch(`${base_Api}user/post/${postId}`, {
       method: "GET",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),

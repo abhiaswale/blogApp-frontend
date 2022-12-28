@@ -3,6 +3,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import AuthContext from "../../store/auth-context";
 import MessageContext from "../../store/message-context";
 import ErrorHandler from "../ErrorHandler/ErrorHandler";
+import { base_Api } from "../../store/api";
+
 const PostForm = () => {
   const authCtx = useContext(AuthContext);
   const msgCtx = useContext(MessageContext);
@@ -20,7 +22,7 @@ const PostForm = () => {
   const editPostId = location.state;
   const startEditPost = (postId) => {
     setIsEditing(true);
-    fetch(`https://blog-app05.herokuapp.com/user/post/${postId}`, {
+    fetch(`${base_Api}user/post/${postId}`, {
       method: "GET",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
@@ -81,10 +83,10 @@ const PostForm = () => {
     formData.append("description", description);
     formData.append("image", image);
 
-    let url = "https://blog-app05.herokuapp.com/user/post";
+    let url = `${base_Api}user/post`;
     let method = "POST";
     if (isEditing) {
-      url = `https://blog-app05.herokuapp.com/user/post/${editPostId}`;
+      url = `${base_Api}user/post/${editPostId}`;
       method = "PUT";
     }
     fetch(url, {

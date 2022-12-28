@@ -8,6 +8,7 @@ import { FcSearch } from "react-icons/fc";
 import CancelIcon from "@mui/icons-material/Cancel";
 import Loading from "../components/Loading/Loading";
 import Pagination from "../components/Pagination/Pagination";
+import { base_Api } from "../store/api";
 
 import Footer from "../components/Footer/Footer";
 
@@ -64,7 +65,7 @@ const StartingPage = (props) => {
     if (localStorage.getItem("expiryDate") <= new Date()) {
       authCtx.logout();
     }
-    fetch("https://blog-app05.herokuapp.com/user/detail", {
+    fetch(`${base_Api}user/detail`, {
       headers: {
         Authorization: "Bearer " + authCtx.token,
       },

@@ -1,0 +1,1 @@
+export const base_Api = "https://blog-api-14o8.onrender.com/"

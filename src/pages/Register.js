@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer/Footer";
+import { base_Api } from "../store/api";
 
 function Register() {
   const [name, setName] = useState("");
@@ -26,7 +27,7 @@ function Register() {
       setError("Please enter a valid password between 5-10 characters");
       return;
     }
-    fetch("https://blog-app05.herokuapp.com/auth/register", {
+    fetch(`${base_Api}auth/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

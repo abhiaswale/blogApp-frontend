@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer/Footer";
 import Loading from "../components/Loading/Loading";
+import { base_Api } from "../store/api";
 import AuthContext from "../store/auth-context";
 import { TestCredentials } from "../test";
 
@@ -31,7 +32,7 @@ const Login = () => {
       return;
     }
     setLoading(true);
-    fetch("https://blog-app05.herokuapp.com/auth/login", {
+    fetch(`${base_Api}auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
